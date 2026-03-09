@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Tic Tac Toe</title>
+    <meta name="description" content="Challenge your friends to a game of Tic Tac Toe online or play against an unbeatable AI. Real-time multiplayer with stickers and animations.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:title" content="Tic Tac Toe - Challenge Your Friends Online">
+    <meta property="og:description" content="Play Tic Tac Toe with friends online in real-time or battle an unbeatable AI. Minimal black & white design with stickers and sound effects.">
+    <meta property="og:image" content="https://i.postimg.cc/SQnzHb58/Screenshot-20260309-163614.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NZ R">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tic Tac Toe - Challenge Your Friends Online">
+    <meta name="twitter:description" content="Play Tic Tac Toe with friends online in real-time or battle an unbeatable AI.">
+    <meta name="twitter:image" content="https://i.postimg.cc/SQnzHb58/Screenshot-20260309-163614.png">
+    <meta name="twitter:image:alt" content="Tic Tac Toe game board with X and O marks on a black background">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <style>
+        .hidden { display: none !important; }
+        body { background-color: #000; color: #fff; }
+    </style>
+</head>
+<body>
+
+<div id="landing-page" class="screen">
+    <div class="background-grid"></div>
+    <div class="content">
+        <div class="logo-icon">
+            <svg viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="2.5">
+                <line x1="15" y1="15" x2="35" y2="35" stroke-linecap="round"></line>
+                <line x1="35" y1="15" x2="15" y2="35" stroke-linecap="round"></line>
+                <circle cx="60" cy="25" r="12"></circle>
+                <line x1="15" y1="50" x2="35" y2="70" stroke-linecap="round"></line>
+                <line x1="35" y1="50" x2="15" y2="70" stroke-linecap="round"></line>
+                <circle cx="60" cy="60" r="12"></circle>
+            </svg>
+        </div>
+        <h1 class="title">Tic Tac Toe</h1>
+        <p class="subtitle">CHALLENGE YOUR FRIENDS ONLINE</p>
+        <div class="button-group">
+            <button id="play-friend" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                Play with Friend
+            </button>
+            <button id="play-ai" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                Play with AI
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="friend-mode-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Play with Friend</h2>
+            <button class="modal-close-x" onclick="closeModal('friend-mode-modal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <p class="modal-desc">Choose how you want to play</p>
+        <div class="modal-buttons">
+            <button id="create-room-btn" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                Create a Room
+            </button>
+            <button id="join-room-btn" class="btn secondary">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                Enter a Room
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="create-room-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Create Room</h2>
+            <button class="modal-close-x" onclick="closeModal('create-room-modal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="create-name-input" class="input-field" placeholder="Enter your name" maxlength="15" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Number of Rounds</label>
+            <div class="round-options">
+                <button class="round-btn active" data-rounds="1">1</button>
+                <button class="round-btn" data-rounds="3">3</button>
+                <button class="round-btn" data-rounds="5">5</button>
+                <button class="round-btn" data-rounds="custom">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                </button>
+            </div>
+            <input type="number" id="custom-rounds-input" class="input-field hidden" placeholder="Enter rounds (1-99)" min="1" max="99">
+        </div>
+        <div class="modal-buttons">
+            <button id="confirm-create-btn" class="btn">Create Room</button>
+        </div>
+    </div>
+</div>
+
+<div id="share-room-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Room Created!</h2>
+        </div>
+        <p class="modal-desc">Share this with your friend to join</p>
+        <div class="share-section">
+            <label>Room Code</label>
+            <div class="copy-field">
+                <span id="room-code-display" class="code-display"></span>
+                <button class="copy-btn" onclick="copyText('room-code-display')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div class="share-section">
+            <label>Share Link</label>
+            <div class="copy-field">
+                <span id="room-link-display" class="link-display"></span>
+                <button class="copy-btn" onclick="copyText('room-link-display')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div class="waiting-indicator">
+            <div class="spinner"></div>
+            <span>Waiting for opponent...</span>
+        </div>
+    </div>
+</div>
+
+<div id="join-room-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Join Room</h2>
+            <button class="modal-close-x" onclick="closeModal('join-room-modal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="join-name-input" class="input-field" placeholder="Enter your name" maxlength="15" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Room Code</label>
+            <input type="text" id="join-code-input" class="input-field" placeholder="Enter 6-digit room code" maxlength="6" autocomplete="off" style="text-transform: uppercase; letter-spacing: 4px; text-align: center; font-size: 1.3rem;">
+        </div>
+        <div id="join-error" class="error-msg hidden"></div>
+        <div class="modal-buttons">
+            <button id="confirm-join-btn" class="btn">Join Room</button>
+        </div>
+    </div>
+</div>
+
+<div id="game-page" class="screen hidden">
+    <div class="top-bar">
+        <div class="player-info">
+            <div class="player-names">
+                <span id="player-x-name" class="pname x-name">Player 1</span>
+                <span class="vs-text">VS</span>
+                <span id="player-o-name" class="pname o-name">Player 2</span>
+            </div>
+            <div id="round-info" class="round-info">Round 1/3</div>
+        </div>
+        <button id="settings-btn" class="icon-btn" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+    </div>
+
+    <div id="status" class="status-text">Your Turn</div>
+
+    <div class="game-container">
+        <div id="board" class="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+    </div>
+
+    <div class="scoreboard">
+        <div class="score-item score-x">
+            <span class="score-label" id="score-x-label">X</span>
+            <span class="score-value" id="score-x">0</span>
+        </div>
+        <div class="score-item score-draw">
+            <span class="score-label">Draw</span>
+            <span class="score-value" id="score-draw">0</span>
+        </div>
+        <div class="score-item score-o">
+            <span class="score-label" id="score-o-label">O</span>
+            <span class="score-value" id="score-o">0</span>
+        </div>
+        <button id="sticker-toggle" class="sticker-toggle-btn" aria-label="Send Sticker">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+        </button>
+    </div>
+</div>
+
+<div id="sticker-panel" class="sticker-panel hidden">
+    <div class="sticker-header">
+        <span>Send a Sticker</span>
+        <button class="modal-close-x small" onclick="toggleStickerPanel()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+    </div>
+    <div class="sticker-grid" id="sticker-grid"></div>
+</div>
+
+<div id="sticker-display" class="sticker-display hidden">
+    <div class="sticker-bubble">
+        <div class="sticker-from" id="sticker-from-name"></div>
+        <div class="sticker-emoji" id="sticker-emoji-display"></div>
+    </div>
+</div>
+
+<div id="result-modal" class="modal hidden">
+    <div class="modal-content">
+        <div id="result-icon" class="result-icon"></div>
+        <h2 id="result-title">Player 1 Wins!</h2>
+        <p id="result-subtitle" class="modal-desc"></p>
+        <div class="modal-buttons">
+            <button id="next-round-btn" class="btn">Next Round</button>
+            <button id="rematch-btn" class="btn hidden">Rematch</button>
+        </div>
+    </div>
+</div>
+
+<div id="match-over-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="trophy-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="64" height="64"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+        </div>
+        <h2 id="match-winner-title">Match Over!</h2>
+        <p id="match-winner-subtitle" class="modal-desc"></p>
+        <div class="final-scores">
+            <div class="final-score-item">
+                <span id="final-x-name">X</span>
+                <span id="final-x-score" class="final-score-val">0</span>
+            </div>
+            <div class="final-score-divider">-</div>
+            <div class="final-score-item">
+                <span id="final-o-name">O</span>
+                <span id="final-o-score" class="final-score-val">0</span>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button id="rematch-final-btn" class="btn">Rematch</button>
+            <button id="leave-final-btn" class="btn secondary">Leave</button>
+        </div>
+    </div>
+</div>
+
+<div id="settings-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Settings</h2>
+            <button class="modal-close-x" onclick="closeModal('settings-modal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="settings-list">
+            <div class="setting-row">
+                <div class="setting-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    Sound Effects
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="sound-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div id="rounds-setting">
+                <div class="setting-row" style="border-bottom: none; padding-bottom: 0.3rem;">
+                    <div class="setting-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        Total Rounds
+                    </div>
+                </div>
+                <div class="settings-rounds-picker" id="settings-rounds-picker">
+                    <button class="settings-round-opt" data-val="1">1</button>
+                    <button class="settings-round-opt" data-val="3">3</button>
+                    <button class="settings-round-opt" data-val="5">5</button>
+                    <button class="settings-round-opt" data-val="7">7</button>
+                    <button class="settings-round-opt" data-val="9">9</button>
+                </div>
+            </div>
+            <div class="setting-row clickable" id="leave-game-btn">
+                <div class="setting-label danger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    Leave Game
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="leave-confirm-modal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Leave Game?</h2>
+        <p class="modal-desc">Your opponent will be notified and the game will end.</p>
+        <div class="modal-buttons">
+            <button id="leave-yes" class="btn danger-btn">Leave</button>
+            <button id="leave-no" class="btn secondary">Stay</button>
+        </div>
+    </div>
+</div>
+
+<div id="player-left-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="disconnect-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path><path d="M10.71 5.05A16 16 0 0 1 22.56 9"></path><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+        </div>
+        <h2 id="player-left-title">Opponent Left</h2>
+        <p class="modal-desc" id="player-left-msg">Your opponent has disconnected from the game.</p>
+        <div class="modal-buttons">
+            <button id="back-home-btn" class="btn">Back to Home</button>
+        </div>
+    </div>
+</div>
+
+<div id="inactivity-warning-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="inactivity-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h2>Make Your Move!</h2>
+        <p class="modal-desc">You have <span id="inactivity-countdown" class="countdown-number">7</span> seconds before the game ends</p>
+        <div class="countdown-bar-container">
+            <div id="countdown-bar" class="countdown-bar"></div>
+        </div>
+        <div class="modal-buttons">
+            <button id="inactivity-dismiss-btn" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                I'm Here
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="inactivity-timeout-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="inactivity-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+        </div>
+        <h2 id="timeout-title">Game Ended</h2>
+        <p id="timeout-msg" class="modal-desc">A player ran out of time to make a move.</p>
+        <div class="modal-buttons">
+            <button id="timeout-home-btn" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Back to Home
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="room-full-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="room-full-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <h2>Game in Progress</h2>
+        <p class="modal-desc">
+            <span id="room-full-player-x" class="room-full-name"></span>
+            <span class="vs-text-small">vs</span>
+            <span id="room-full-player-o" class="room-full-name"></span>
+        </p>
+        <p class="modal-desc">This room already has two players. You can watch the game live!</p>
+        <div class="modal-buttons">
+            <button id="watch-play-btn" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Watch Play
+            </button>
+            <button id="room-full-leave-btn" class="btn secondary">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                Leave
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="spectator-banner" class="spectator-banner hidden">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+    <span>WATCHING</span>
+</div>
+
+<div id="toast" class="toast hidden">
+    <span id="toast-msg">Copied!</span>
+</div>
+
+<footer class="footer">BY NZ R</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

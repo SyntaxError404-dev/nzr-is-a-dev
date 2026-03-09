@@ -1,0 +1,6 @@
+https://g4f.dev/dist/js/*.d.ts
+https://g4f.dev/dist/js/*.js
+https://g4f.dev/dist/js/client.d.ts
+https://g4f.dev/dist/js/client.js
+https://github.com/gpt4free/g4f.dev#readme
+https://github.com/gpt4free/g4f.dev/issues

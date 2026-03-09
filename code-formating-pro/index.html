@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="A Special Gift From @privates_bots" />
+
+    <title>Code-Formatting</title>
+
+    <!-- ✅ Dynamic favicon auto-resize handler -->
+    <script>
+      (() => {
+        const faviconUrl = "https://i.ibb.co/Z11TVFr6/image.jpg";
+        const canvas = document.createElement("canvas");
+        const size = 64;
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = faviconUrl;
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, size, size);
+          const resizedFavicon = canvas.toDataURL("image/png");
+          const link =
+            document.querySelector("link[rel='icon']") ||
+            document.createElement("link");
+          link.rel = "icon";
+          link.type = "image/png";
+          link.href = resizedFavicon;
+          document.head.appendChild(link);
+        };
+      })();
+    </script>
+
+    <!-- Fallback favicon & Apple touch icon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://i.ibb.co/Z11TVFr6/image.jpg"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://i.ibb.co/Z11TVFr6/image.jpg"
+    />
+
+    <!-- CSS & JS -->
+    <link href="main.9b8f778d.css" rel="stylesheet" />
+    <script defer src="main.899ce0bf.js"></script>
+  </head>
+
+  <body class="dark text-foreground bg-background">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
