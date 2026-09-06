@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>U⩊U - Ad-Free Music Experience</title>
+    <title>YumeMusic - Ad-Free Music Experience</title>
 
-    <!-- Primary Meta -->
-    <meta name="title" content="U⩊U - Ad-Free Music Experience">
+    <meta name="title" content="YumeMusic - Ad-Free Music Experience">
     <meta name="description" content="Your Music. Your Way. Zero Ads.">
 
-    <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="U⩊U - Ad-Free Music Experience">
+    <meta property="og:title" content="YumeMusic - Ad-Free Music Experience">
     <meta property="og:description" content="Your Music. Your Way. Zero Ads.">
     <meta property="og:image" content="https://i.ibb.co/qL3ZG7hn/reply-img-1768426854610.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="U⩊U - Ad-Free Music Experience">
+    <meta name="twitter:title" content="YumeMusic - Ad-Free Music Experience">
     <meta name="twitter:description" content="Your Music. Your Way. Zero Ads.">
-    <meta name="twitter:image" content="https://i.ibb.co/qL3ZG7hn/reply-img-1768426854610.jpg">    <style>
+    <meta name="twitter:image" content="https://i.ibb.co/qL3ZG7hn/reply-img-1768426854610.jpg">
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -75,80 +73,17 @@
             transition: transform 0.3s ease-out;
         }
 
-        .orb1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #1a237e 0%, #0d47a1 50%, transparent 70%);
-            top: -150px;
-            left: -150px;
-            animation: orbFloat1 30s infinite ease-in-out;
-        }
+        .orb1 { width: 500px; height: 500px; background: radial-gradient(circle, #1a237e 0%, #0d47a1 50%, transparent 70%); top: -150px; left: -150px; animation: orbFloat1 30s infinite ease-in-out; }
+        .orb2 { width: 450px; height: 450px; background: radial-gradient(circle, #0d47a1 0%, #1565c0 50%, transparent 70%); bottom: -100px; right: -100px; animation: orbFloat2 35s infinite ease-in-out; }
+        .orb3 { width: 350px; height: 350px; background: radial-gradient(circle, #1565c0 0%, #1976d2 50%, transparent 70%); top: 40%; left: 40%; animation: orbFloat3 28s infinite ease-in-out; }
+        .orb4 { width: 300px; height: 300px; background: radial-gradient(circle, #283593 0%, #3949ab 50%, transparent 70%); top: 15%; right: 15%; animation: orbFloat4 32s infinite ease-in-out; }
+        .orb5 { width: 250px; height: 250px; background: radial-gradient(circle, #1e88e5 0%, #42a5f5 50%, transparent 70%); bottom: 20%; left: 10%; animation: orbFloat5 26s infinite ease-in-out; }
 
-        .orb2 {
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, #0d47a1 0%, #1565c0 50%, transparent 70%);
-            bottom: -100px;
-            right: -100px;
-            animation: orbFloat2 35s infinite ease-in-out;
-        }
-
-        .orb3 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, #1565c0 0%, #1976d2 50%, transparent 70%);
-            top: 40%;
-            left: 40%;
-            animation: orbFloat3 28s infinite ease-in-out;
-        }
-
-        .orb4 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #283593 0%, #3949ab 50%, transparent 70%);
-            top: 15%;
-            right: 15%;
-            animation: orbFloat4 32s infinite ease-in-out;
-        }
-
-        .orb5 {
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, #1e88e5 0%, #42a5f5 50%, transparent 70%);
-            bottom: 20%;
-            left: 10%;
-            animation: orbFloat5 26s infinite ease-in-out;
-        }
-
-        @keyframes orbFloat1 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(80px, 60px) scale(1.15); }
-            66% { transform: translate(-40px, 100px) scale(0.9); }
-        }
-
-        @keyframes orbFloat2 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-70px, -50px) scale(1.1); }
-            66% { transform: translate(50px, -80px) scale(0.95); }
-        }
-
-        @keyframes orbFloat3 {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            33% { transform: translate(calc(-50% + 60px), calc(-50% - 40px)) scale(1.2); }
-            66% { transform: translate(calc(-50% - 80px), calc(-50% + 50px)) scale(0.85); }
-        }
-
-        @keyframes orbFloat4 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-50px, 70px) scale(1.1); }
-            66% { transform: translate(60px, -60px) scale(0.9); }
-        }
-
-        @keyframes orbFloat5 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(90px, -40px) scale(1.15); }
-            66% { transform: translate(-60px, -70px) scale(0.95); }
-        }
+        @keyframes orbFloat1 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(80px, 60px) scale(1.15); } 66% { transform: translate(-40px, 100px) scale(0.9); } }
+        @keyframes orbFloat2 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(-70px, -50px) scale(1.1); } 66% { transform: translate(50px, -80px) scale(0.95); } }
+        @keyframes orbFloat3 { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 33% { transform: translate(calc(-50% + 60px), calc(-50% - 40px)) scale(1.2); } 66% { transform: translate(calc(-50% - 80px), calc(-50% + 50px)) scale(0.85); } }
+        @keyframes orbFloat4 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(-50px, 70px) scale(1.1); } 66% { transform: translate(60px, -60px) scale(0.9); } }
+        @keyframes orbFloat5 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(90px, -40px) scale(1.15); } 66% { transform: translate(-60px, -70px) scale(0.95); } }
 
         .liquid-blob {
             position: fixed;
@@ -588,227 +523,6 @@
             50% { transform: scale(1.15); }
         }
 
-        @media (max-width: 1024px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-                max-width: 700px;
-            }
-
-            .download-glass {
-                max-width: 500px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 30px 16px;
-                min-height: auto;
-                padding-bottom: 80px;
-            }
-
-            .app-title {
-                font-size: 2.8rem;
-            }
-
-            .title-glow {
-                font-size: 2.8rem;
-            }
-
-            .tagline {
-                font-size: 1.05rem;
-                margin-bottom: 25px;
-            }
-
-            .app-logo {
-                width: 140px;
-                height: 140px;
-                border-radius: 34px;
-            }
-
-            .logo-container {
-                margin-bottom: 35px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-                margin: 40px auto;
-                padding: 0 16px;
-            }
-
-            .feature-card {
-                padding: 28px 20px;
-                border-radius: 22px;
-            }
-
-            .feature-icon {
-                width: 48px;
-                height: 48px;
-                margin-bottom: 18px;
-            }
-
-            .feature-icon svg {
-                width: 24px;
-                height: 24px;
-            }
-
-            .feature-title {
-                font-size: 1.15rem;
-            }
-
-            .feature-desc {
-                font-size: 0.9rem;
-            }
-
-            .download-section {
-                padding: 80px 16px;
-            }
-
-            .download-glass {
-                padding: 45px 22px;
-                border-radius: 26px;
-            }
-
-            .download-btn {
-                padding: 16px 36px;
-                font-size: 1.1rem;
-                gap: 12px;
-            }
-
-            .download-btn svg {
-                width: 22px;
-                height: 22px;
-            }
-
-            .download-title {
-                font-size: 1.7rem;
-                margin-bottom: 14px;
-            }
-
-            .download-subtitle {
-                font-size: 0.95rem;
-                margin-bottom: 35px;
-            }
-
-            .scroll-indicator {
-                bottom: 30px;
-            }
-
-            .scroll-mouse {
-                width: 22px;
-                height: 36px;
-            }
-
-            footer {
-                padding: 35px 16px;
-            }
-
-            .footer-text {
-                font-size: 0.85rem;
-            }
-
-            .bg-orb {
-                filter: blur(70px);
-            }
-
-            .orb1, .orb2 {
-                width: 280px;
-                height: 280px;
-            }
-
-            .orb3, .orb4, .orb5 {
-                width: 180px;
-                height: 180px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 25px 14px;
-                padding-bottom: 70px;
-            }
-
-            .app-title {
-                font-size: 2.4rem;
-            }
-
-            .title-glow {
-                font-size: 2.4rem;
-            }
-
-            .tagline {
-                font-size: 0.95rem;
-            }
-
-            .app-logo {
-                width: 120px;
-                height: 120px;
-                border-radius: 30px;
-            }
-
-            .features-grid {
-                gap: 14px;
-                margin: 35px auto;
-            }
-
-            .feature-card {
-                padding: 24px 18px;
-                border-radius: 20px;
-            }
-
-            .download-section {
-                padding: 60px 14px;
-            }
-
-            .download-glass {
-                padding: 40px 18px;
-                border-radius: 24px;
-            }
-
-            .download-title {
-                font-size: 1.5rem;
-            }
-
-            .download-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .download-btn {
-                padding: 15px 32px;
-                font-size: 1rem;
-            }
-
-            .bg-orb {
-                filter: blur(60px);
-            }
-
-            .orb1, .orb2 {
-                width: 220px;
-                height: 220px;
-            }
-
-            .orb3, .orb4, .orb5 {
-                width: 150px;
-                height: 150px;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .cursor-glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(21, 101, 192, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 5;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.3s ease;
-        }
-
         .skip-arrow {
             display: none;
             position: fixed;
@@ -858,16 +572,76 @@
         }
 
         @media (max-width: 768px) {
-            .skip-arrow {
-                display: flex;
-            }
+            .skip-arrow { display: flex; }
         }
 
         @media (min-width: 769px) {
-            .skip-arrow {
-                display: none !important;
-            }
+            .skip-arrow { display: none !important; }
         }
+
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(21, 101, 192, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 5;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 700px; }
+            .download-glass { max-width: 500px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 30px 16px; min-height: auto; padding-bottom: 80px; }
+            .app-title { font-size: 2.8rem; }
+            .title-glow { font-size: 2.8rem; }
+            .tagline { font-size: 1.05rem; margin-bottom: 25px; }
+            .app-logo { width: 140px; height: 140px; border-radius: 34px; }
+            .logo-container { margin-bottom: 35px; }
+            .features-grid { grid-template-columns: 1fr; gap: 16px; margin: 40px auto; padding: 0 16px; }
+            .feature-card { padding: 28px 20px; border-radius: 22px; }
+            .feature-icon { width: 48px; height: 48px; margin-bottom: 18px; }
+            .feature-icon svg { width: 24px; height: 24px; }
+            .feature-title { font-size: 1.15rem; }
+            .feature-desc { font-size: 0.9rem; }
+            .download-section { padding: 80px 16px; }
+            .download-glass { padding: 45px 22px; border-radius: 26px; }
+            .download-btn { padding: 16px 36px; font-size: 1.1rem; gap: 12px; }
+            .download-btn svg { width: 22px; height: 22px; }
+            .download-title { font-size: 1.7rem; margin-bottom: 14px; }
+            .download-subtitle { font-size: 0.95rem; margin-bottom: 35px; }
+            .scroll-indicator { bottom: 30px; }
+            .scroll-mouse { width: 22px; height: 36px; }
+            footer { padding: 35px 16px; }
+            .footer-text { font-size: 0.85rem; }
+            .bg-orb { filter: blur(70px); }
+            .orb1, .orb2 { width: 280px; height: 280px; }
+            .orb3, .orb4, .orb5 { width: 180px; height: 180px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 25px 14px; padding-bottom: 70px; }
+            .app-title { font-size: 2.4rem; }
+            .title-glow { font-size: 2.4rem; }
+            .tagline { font-size: 0.95rem; }
+            .app-logo { width: 120px; height: 120px; border-radius: 30px; }
+            .features-grid { gap: 14px; margin: 35px auto; }
+            .feature-card { padding: 24px 18px; border-radius: 20px; }
+            .download-section { padding: 60px 14px; }
+            .download-glass { padding: 40px 18px; border-radius: 24px; }
+            .download-title { font-size: 1.5rem; }
+            .download-subtitle { font-size: 0.9rem; }
+            .download-btn { padding: 15px 32px; font-size: 1rem; }
+            .bg-orb { filter: blur(60px); }
+            .orb1, .orb2 { width: 220px; height: 220px; }
+            .orb3, .orb4, .orb5 { width: 150px; height: 150px; }
+        }
+
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
@@ -893,12 +667,12 @@
             <div class="logo-container">
                 <div class="logo-wrapper">
                     <div class="logo-glow"></div>
-                    <img src="/uwu.png" alt="U⩊U" class="app-logo" id="appLogo">
+                    <img src="/yume.png" alt="YumeMusic" class="app-logo" id="appLogo">
                 </div>
             </div>
             <div style="position: relative;">
-                <span class="title-glow">U⩊U</span>
-                <h1 class="app-title">U⩊U</h1>
+                <span class="title-glow">YumeMusic</span>
+                <h1 class="app-title">YumeMusic</h1>
             </div>
             <p class="tagline">Your Music. Your Way. Zero Ads.</p>
 
@@ -958,10 +732,10 @@
         <section class="download-section" id="download">
             <div class="download-glass">
                 <h2 class="download-title">Ready to Experience Freedom?</h2>
-                <p class="download-subtitle">Download U⩊U now and unlock a world of unlimited, ad-free music at your fingertips.</p>
-                <a href="/download-uwu-app" class="download-btn" id="downloadBtn">
+                <p class="download-subtitle">Download YumeMusic now and unlock a world of unlimited, ad-free music at your fingertips.</p>
+                <a href="/download-YumeMusic.apk" class="download-btn" id="downloadBtn">
                     <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span>Download U⩊U</span>
+                    <span>Download YumeMusic</span>
                 </a>
             </div>
         </section>
