@@ -2,89 +2,139 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>YumeMusic - Ad-Free Music Experience</title>
-
-    <meta name="title" content="YumeMusic - Ad-Free Music Experience">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YumeMusic</title>
     <meta name="description" content="Your Music. Your Way. Zero Ads.">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="YumeMusic - Ad-Free Music Experience">
-    <meta property="og:description" content="Your Music. Your Way. Zero Ads.">
-    <meta property="og:image" content="https://i.ibb.co/qL3ZG7hn/reply-img-1768426854610.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="YumeMusic - Ad-Free Music Experience">
-    <meta name="twitter:description" content="Your Music. Your Way. Zero Ads.">
-    <meta name="twitter:image" content="https://i.ibb.co/qL3ZG7hn/reply-img-1768426854610.jpg">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-
+        html, body {
+            height: 100%;
+            overscroll-behavior: none;
+        }
         body {
-            min-height: 100vh;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #050508;
+            background: #030308;
             color: #fff;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
-
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
+        
         .bg-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: 0;
             overflow: hidden;
+            pointer-events: none;
         }
-
         .mesh-gradient {
             position: absolute;
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(13, 71, 161, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 80% at 80% 20%, rgba(21, 101, 192, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse 70% 60% at 60% 80%, rgba(26, 35, 126, 0.35) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 40% at 10% 90%, rgba(30, 136, 229, 0.25) 0%, transparent 50%);
-            filter: blur(40px);
-            animation: meshMove 25s ease-in-out infinite;
+                radial-gradient(ellipse 70% 50% at 20% 30%, rgba(13, 71, 161, 0.45) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 70% at 80% 20%, rgba(21, 101, 192, 0.35) 0%, transparent 60%),
+                radial-gradient(ellipse 70% 60% at 60% 80%, rgba(26, 35, 126, 0.4) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 10% 90%, rgba(30, 136, 229, 0.3) 0%, transparent 60%);
+            filter: blur(50px);
+            animation: meshMove 20s ease-in-out infinite;
         }
-
         @keyframes meshMove {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30px, -20px) rotate(2deg); }
-            50% { transform: translate(-20px, 30px) rotate(-2deg); }
-            75% { transform: translate(-30px, -30px) rotate(1deg); }
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            30% { transform: translate(40px, -30px) scale(1.05) rotate(2deg); }
+            60% { transform: translate(-30px, 40px) scale(0.98) rotate(-2deg); }
         }
-
         .bg-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.5;
-            transition: transform 0.3s ease-out;
+            filter: blur(80px);
+            opacity: 0.6;
+            will-change: transform;
         }
-
-        .orb1 { width: 500px; height: 500px; background: radial-gradient(circle, #1a237e 0%, #0d47a1 50%, transparent 70%); top: -150px; left: -150px; animation: orbFloat1 30s infinite ease-in-out; }
-        .orb2 { width: 450px; height: 450px; background: radial-gradient(circle, #0d47a1 0%, #1565c0 50%, transparent 70%); bottom: -100px; right: -100px; animation: orbFloat2 35s infinite ease-in-out; }
-        .orb3 { width: 350px; height: 350px; background: radial-gradient(circle, #1565c0 0%, #1976d2 50%, transparent 70%); top: 40%; left: 40%; animation: orbFloat3 28s infinite ease-in-out; }
-        .orb4 { width: 300px; height: 300px; background: radial-gradient(circle, #283593 0%, #3949ab 50%, transparent 70%); top: 15%; right: 15%; animation: orbFloat4 32s infinite ease-in-out; }
-        .orb5 { width: 250px; height: 250px; background: radial-gradient(circle, #1e88e5 0%, #42a5f5 50%, transparent 70%); bottom: 20%; left: 10%; animation: orbFloat5 26s infinite ease-in-out; }
-
-        @keyframes orbFloat1 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(80px, 60px) scale(1.15); } 66% { transform: translate(-40px, 100px) scale(0.9); } }
-        @keyframes orbFloat2 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(-70px, -50px) scale(1.1); } 66% { transform: translate(50px, -80px) scale(0.95); } }
-        @keyframes orbFloat3 { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 33% { transform: translate(calc(-50% + 60px), calc(-50% - 40px)) scale(1.2); } 66% { transform: translate(calc(-50% - 80px), calc(-50% + 50px)) scale(0.85); } }
-        @keyframes orbFloat4 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(-50px, 70px) scale(1.1); } 66% { transform: translate(60px, -60px) scale(0.9); } }
-        @keyframes orbFloat5 { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(90px, -40px) scale(1.15); } 66% { transform: translate(-60px, -70px) scale(0.95); } }
-
+        .orb1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #1a237e, #0d47a1 60%, transparent 80%);
+            top: -100px; left: -80px;
+            animation: float1 25s ease-in-out infinite;
+        }
+        .orb2 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, #0d47a1, #1565c0 50%, transparent 80%);
+            bottom: -100px; right: -100px;
+            animation: float2 30s ease-in-out infinite;
+        }
+        .orb3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #1565c0, #1976d2 50%, transparent 80%);
+            top: 40%; left: 30%;
+            animation: float3 26s ease-in-out infinite;
+        }
+        .orb4 {
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, #283593, #3949ab 50%, transparent 80%);
+            top: 15%; right: 10%;
+            animation: float4 28s ease-in-out infinite;
+        }
+        .orb5 {
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, #1e88e5, #42a5f5 50%, transparent 80%);
+            bottom: 20%; left: 5%;
+            animation: float5 24s ease-in-out infinite;
+        }
+        @keyframes float1 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(50px, 40px) scale(1.1); }
+            66% { transform: translate(-30px, 70px) scale(0.95); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(-60px, -40px) scale(1.05); }
+            66% { transform: translate(40px, -70px) scale(0.95); }
+        }
+        @keyframes float3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            33% { transform: translate(calc(-50% + 50px), calc(-50% - 30px)) scale(1.15); }
+            66% { transform: translate(calc(-50% - 70px), calc(-50% + 50px)) scale(0.9); }
+        }
+        @keyframes float4 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(-40px, 60px) scale(1.1); }
+            66% { transform: translate(50px, -50px) scale(0.95); }
+        }
+        @keyframes float5 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(70px, -30px) scale(1.15); }
+            66% { transform: translate(-50px, -60px) scale(0.9); }
+        }
+        
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            opacity: 0.025;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        .glass-layer {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 5, 8, 0.15);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
         .liquid-blob {
             position: fixed;
             pointer-events: none;
@@ -92,75 +142,65 @@
             background: radial-gradient(circle, rgba(21, 101, 192, 0.6) 0%, rgba(13, 71, 161, 0.3) 40%, transparent 70%);
             filter: blur(30px);
             transform: scale(0);
-            z-index: 2;
+            z-index: 3;
         }
-
         @keyframes liquidSpread {
             0% { transform: scale(0); opacity: 0.8; }
             50% { opacity: 0.5; }
             100% { transform: scale(3); opacity: 0; }
         }
-
         .ripple-ring {
             position: fixed;
             pointer-events: none;
-            border: 2px solid rgba(144, 202, 249, 0.5);
+            border: 1.5px solid rgba(144, 202, 249, 0.6);
             border-radius: 50%;
             transform: scale(0);
-            z-index: 3;
+            z-index: 4;
         }
-
         @keyframes rippleExpand {
             0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(5); opacity: 0; }
+            100% { transform: scale(4); opacity: 0; }
         }
-
-        .glass-layer {
+        
+        .cursor-glow {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 5, 8, 0.2);
-            backdrop-filter: blur(3px);
-            z-index: 1;
-        }
-
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 1;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(21, 101, 192, 0.1) 0%, transparent 60%);
             pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 5;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            transition: opacity 0.3s ease;
+            will-change: transform;
         }
-
-        .container {
+        
+        .main-container {
             position: relative;
             z-index: 10;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-
+        
         .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 40px 20px 80px;
             text-align: center;
+            position: relative;
         }
-
-        .logo-container {
-            perspective: 1200px;
-            margin-bottom: 45px;
+        
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+            transform-style: preserve-3d;
+            perspective: 800px;
         }
-
         .logo-glow {
             position: absolute;
             width: 220px;
@@ -172,89 +212,88 @@
             transform: translate(-50%, -50%);
             z-index: -1;
         }
-
-        .logo-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
         .app-logo {
-            width: 180px;
-            height: 180px;
-            border-radius: 44px;
+            width: 160px;
+            height: 160px;
+            border-radius: 40px;
             object-fit: cover;
             box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.5),
-                0 0 120px rgba(21, 101, 192, 0.3),
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(21, 101, 192, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform-style: preserve-3d;
+            border: 1px solid rgba(144, 202, 249, 0.2);
+            background-color: #0d1b3a;
+            display: block;
             transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
-            border: 1px solid rgba(144, 202, 249, 0.15);
         }
-
         .app-logo:hover {
-            box-shadow: 
-                0 40px 80px rgba(0, 0, 0, 0.6),
-                0 0 150px rgba(21, 101, 192, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6), 0 0 140px rgba(21, 101, 192, 0.4);
         }
-
-        .app-title {
-            font-size: 4.2rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            margin-bottom: 18px;
-            background: linear-gradient(135deg, #ffffff 0%, #90caf9 40%, #42a5f5 70%, #1565c0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        
+        .title-container {
             position: relative;
+            margin-bottom: 18px;
         }
-
         .title-glow {
             position: absolute;
-            font-size: 4.2rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            color: #1565c0;
-            filter: blur(30px);
-            opacity: 0.5;
-            z-index: -1;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: #1565c0;
+            filter: blur(30px);
+            opacity: 0.6;
+            z-index: -1;
+            white-space: nowrap;
         }
-
+        .app-title {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            background: linear-gradient(135deg, #ffffff 0%, #90caf9 40%, #42a5f5 70%, #1565c0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
         .tagline {
-            font-size: 1.35rem;
-            color: rgba(255, 255, 255, 0.65);
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 35px;
             font-weight: 300;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
         }
-
+        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            max-width: 1000px;
+            gap: 20px;
+            max-width: 950px;
             width: 100%;
-            margin: 55px auto;
-            padding: 0 20px;
+            margin: 50px auto;
+            padding: 0 16px;
         }
-
         .feature-card {
-            background: linear-gradient(135deg, rgba(26, 35, 126, 0.15), rgba(13, 71, 161, 0.08));
-            border: 1px solid rgba(144, 202, 249, 0.08);
-            border-radius: 28px;
-            padding: 38px 28px;
-            backdrop-filter: blur(40px);
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.2), rgba(13, 71, 161, 0.1));
+            border: 1px solid rgba(144, 202, 249, 0.1);
+            border-radius: 26px;
+            padding: 32px 26px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             transform-style: preserve-3d;
             position: relative;
             overflow: hidden;
+            transform: translateY(50px);
+            opacity: 0;
+            will-change: transform, opacity;
         }
-
+        .feature-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
         .feature-card::before {
             content: '';
             position: absolute;
@@ -262,90 +301,125 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(144, 202, 249, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(144, 202, 249, 0.4), transparent);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-
         .feature-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(21, 101, 192, 0.15) 0%, transparent 50%);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(21, 101, 192, 0.2) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.4s ease;
+            pointer-events: none;
         }
-
         .feature-card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(144, 202, 249, 0.25);
-            box-shadow: 
-                0 35px 70px rgba(0, 0, 0, 0.4),
-                0 0 60px rgba(21, 101, 192, 0.15);
+            border-color: rgba(144, 202, 249, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 50px rgba(21, 101, 192, 0.2);
         }
-
         .feature-card:hover::before,
         .feature-card:hover::after {
             opacity: 1;
         }
-
         .feature-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(21, 101, 192, 0.25), rgba(13, 71, 161, 0.15));
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.3), rgba(13, 71, 161, 0.2));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 22px;
-            border: 1px solid rgba(144, 202, 249, 0.1);
+            margin-bottom: 20px;
+            border: 1px solid rgba(144, 202, 249, 0.15);
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
-
         .feature-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             stroke: #90caf9;
             stroke-width: 1.5;
             fill: none;
         }
-
         .feature-title {
             font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             color: #e3f2fd;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
-
         .feature-desc {
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.55);
-            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
-
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 20;
+        }
+        .scroll-mouse {
+            width: 24px;
+            height: 38px;
+            border: 2px solid rgba(144, 202, 249, 0.4);
+            border-radius: 12px;
+            position: relative;
+        }
+        .scroll-wheel {
+            width: 4px;
+            height: 8px;
+            background: rgba(144, 202, 249, 0.7);
+            border-radius: 2px;
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollWheel 2s infinite;
+        }
+        @keyframes scrollWheel {
+            0%, 100% { opacity: 1; top: 7px; }
+            50% { opacity: 0.2; top: 18px; }
+        }
+        
         .download-section {
-            padding: 120px 20px;
+            padding: 100px 20px;
             text-align: center;
             position: relative;
         }
-
         .download-glass {
-            background: linear-gradient(135deg, rgba(26, 35, 126, 0.1), rgba(13, 71, 161, 0.05));
-            backdrop-filter: blur(60px);
-            border: 1px solid rgba(144, 202, 249, 0.08);
-            border-radius: 40px;
-            padding: 70px 40px;
-            max-width: 600px;
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.15), rgba(13, 71, 161, 0.1));
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(144, 202, 249, 0.12);
+            border-radius: 36px;
+            padding: 60px 30px;
+            max-width: 550px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
+        .download-glass.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
         .download-glass::before {
             content: '';
             position: absolute;
@@ -353,48 +427,42 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(144, 202, 249, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(144, 202, 249, 0.5), transparent);
         }
-
         .download-title {
-            font-size: 2.4rem;
-            font-weight: 600;
+            font-size: 2.2rem;
+            font-weight: 700;
             margin-bottom: 18px;
             color: #fff;
         }
-
         .download-subtitle {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.55);
-            margin-bottom: 45px;
-            max-width: 450px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            max-width: 420px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
         }
-
         .download-btn {
             display: inline-flex;
             align-items: center;
-            gap: 14px;
-            padding: 20px 48px;
-            font-size: 1.3rem;
+            gap: 12px;
+            padding: 18px 40px;
+            font-size: 1.15rem;
             font-weight: 600;
             color: #fff;
             background: linear-gradient(135deg, #1565c0 0%, #0d47a1 50%, #1a237e 100%);
-            border: 1px solid rgba(144, 202, 249, 0.2);
-            border-radius: 60px;
+            border: 1px solid rgba(144, 202, 249, 0.25);
+            border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: 
-                0 20px 50px rgba(21, 101, 192, 0.4),
-                0 0 80px rgba(21, 101, 192, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(21, 101, 192, 0.4), 0 0 70px rgba(21, 101, 192, 0.2);
             position: relative;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
-
         .download-btn::before {
             content: '';
             position: absolute;
@@ -402,246 +470,157 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
         }
-
         .download-btn:hover::before {
             left: 100%;
         }
-
         .download-btn:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 
-                0 30px 70px rgba(21, 101, 192, 0.5),
-                0 0 100px rgba(21, 101, 192, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            border-color: rgba(144, 202, 249, 0.35);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(21, 101, 192, 0.5), 0 0 90px rgba(21, 101, 192, 0.3);
+            border-color: rgba(144, 202, 249, 0.4);
         }
-
         .download-btn:active {
-            transform: translateY(-3px) scale(0.99);
+            transform: translateY(-2px) scale(0.98);
         }
-
         .download-btn svg {
-            width: 26px;
-            height: 26px;
+            width: 24px;
+            height: 24px;
             stroke: currentColor;
             stroke-width: 2;
             fill: none;
         }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .scroll-mouse {
-            width: 26px;
-            height: 42px;
-            border: 2px solid rgba(144, 202, 249, 0.3);
-            border-radius: 13px;
-            position: relative;
-        }
-
-        .scroll-wheel {
-            width: 4px;
-            height: 8px;
-            background: rgba(144, 202, 249, 0.5);
-            border-radius: 2px;
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scrollWheel 2s infinite;
-        }
-
-        @keyframes scrollWheel {
-            0%, 100% { opacity: 1; top: 8px; }
-            50% { opacity: 0.3; top: 20px; }
-        }
-
+        
         footer {
-            padding: 50px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-top: 1px solid rgba(144, 202, 249, 0.08);
             background: rgba(21, 101, 192, 0.05);
-            backdrop-filter: blur(30px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
-
         .download-counter {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            margin-bottom: 16px;
-            padding: 8px 16px;
+            gap: 8px;
+            margin-bottom: 14px;
+            padding: 8px 14px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.45);
+            color: rgba(255, 255, 255, 0.5);
             letter-spacing: 0.04em;
         }
-
         .download-counter svg {
             width: 14px;
             height: 14px;
-            stroke: rgba(144, 202, 249, 0.5);
+            stroke: rgba(144, 202, 249, 0.6);
             stroke-width: 2;
             fill: none;
         }
-
         #downloadCount {
             font-weight: 600;
-            color: rgba(144, 202, 249, 0.7);
+            color: rgba(144, 202, 249, 0.8);
         }
-
         .footer-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.4);
             letter-spacing: 0.08em;
         }
-
         .footer-heart {
             color: #e91e63;
             display: inline-block;
             animation: heartbeat 1.5s infinite;
         }
-
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            50% { transform: scale(1.2); }
         }
-
+        
         .skip-arrow {
-            display: none;
             position: fixed;
-            bottom: 90px;
-            right: 16px;
-            width: 42px;
-            height: 42px;
+            bottom: 80px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: rgba(21, 101, 192, 0.25);
-            border: 1px solid rgba(144, 202, 249, 0.2);
-            backdrop-filter: blur(15px);
+            background: rgba(21, 101, 192, 0.3);
+            border: 1px solid rgba(144, 202, 249, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 100;
             cursor: pointer;
+            display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            animation: gentlePulse 3s infinite ease-in-out;
+            opacity: 1;
+            transform: translateY(0);
         }
-
         .skip-arrow svg {
             width: 20px;
             height: 20px;
-            stroke: rgba(255, 255, 255, 0.8);
-            stroke-width: 2;
+            stroke: rgba(255, 255, 255, 0.9);
+            stroke-width: 2.5;
             fill: none;
         }
-
         .skip-arrow:hover {
-            background: rgba(21, 101, 192, 0.4);
-            transform: scale(1.08);
+            background: rgba(21, 101, 192, 0.5);
+            transform: scale(1.1);
         }
-
-        .skip-arrow:active {
-            transform: scale(0.95);
-        }
-
         .skip-arrow.hidden {
-            opacity: 0 !important;
-            pointer-events: none !important;
+            opacity: 0;
+            pointer-events: none;
             transform: translateY(20px);
         }
-
-        @keyframes gentlePulse {
-            0%, 100% { opacity: 0.85; }
-            50% { opacity: 1; }
-        }
-
+        
         @media (max-width: 768px) {
-            .skip-arrow { display: flex; }
-        }
-
-        @media (min-width: 769px) {
-            .skip-arrow { display: none !important; }
-        }
-
-        .cursor-glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(21, 101, 192, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 5;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.3s ease;
-        }
-
-        @media (max-width: 1024px) {
-            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 700px; }
-            .download-glass { max-width: 500px; }
-        }
-
-        @media (max-width: 768px) {
-            .hero { padding: 30px 16px; min-height: auto; padding-bottom: 80px; }
-            .app-title { font-size: 2.8rem; }
-            .title-glow { font-size: 2.8rem; }
-            .tagline { font-size: 1.05rem; margin-bottom: 25px; }
-            .app-logo { width: 140px; height: 140px; border-radius: 34px; }
-            .logo-container { margin-bottom: 35px; }
-            .features-grid { grid-template-columns: 1fr; gap: 16px; margin: 40px auto; padding: 0 16px; }
-            .feature-card { padding: 28px 20px; border-radius: 22px; }
-            .feature-icon { width: 48px; height: 48px; margin-bottom: 18px; }
-            .feature-icon svg { width: 24px; height: 24px; }
-            .feature-title { font-size: 1.15rem; }
-            .feature-desc { font-size: 0.9rem; }
-            .download-section { padding: 80px 16px; }
-            .download-glass { padding: 45px 22px; border-radius: 26px; }
-            .download-btn { padding: 16px 36px; font-size: 1.1rem; gap: 12px; }
-            .download-btn svg { width: 22px; height: 22px; }
-            .download-title { font-size: 1.7rem; margin-bottom: 14px; }
-            .download-subtitle { font-size: 0.95rem; margin-bottom: 35px; }
-            .scroll-indicator { bottom: 30px; }
-            .scroll-mouse { width: 22px; height: 36px; }
-            footer { padding: 35px 16px; }
-            .footer-text { font-size: 0.85rem; }
-            .bg-orb { filter: blur(70px); }
-            .orb1, .orb2 { width: 280px; height: 280px; }
+            .hero { padding: 30px 16px 80px; }
+            .app-title { font-size: 2.6rem; letter-spacing: 0.08em; }
+            .title-glow { font-size: 2.6rem; }
+            .tagline { font-size: 1rem; }
+            .app-logo { width: 130px; height: 130px; border-radius: 32px; }
+            .features-grid { grid-template-columns: 1fr; gap: 14px; margin: 40px auto; padding: 0 14px; }
+            .feature-card { padding: 26px 20px; border-radius: 20px; }
+            .feature-icon { width: 46px; height: 46px; border-radius: 12px; }
+            .feature-icon svg { width: 22px; height: 22px; }
+            .feature-title { font-size: 1.1rem; }
+            .feature-desc { font-size: 0.88rem; }
+            .download-section { padding: 80px 14px; }
+            .download-glass { padding: 40px 20px; border-radius: 26px; }
+            .download-btn { padding: 15px 32px; font-size: 1rem; }
+            .download-title { font-size: 1.7rem; }
+            .download-subtitle { font-size: 0.92rem; margin-bottom: 30px; }
+            .scroll-indicator { bottom: 20px; }
+            .skip-arrow { bottom: 60px; right: 16px; width: 40px; height: 40px; }
+            .bg-orb { filter: blur(60px); opacity: 0.5; }
+            .orb1, .orb2 { width: 250px; height: 250px; }
             .orb3, .orb4, .orb5 { width: 180px; height: 180px; }
         }
-
+        
         @media (max-width: 480px) {
-            .hero { padding: 25px 14px; padding-bottom: 70px; }
-            .app-title { font-size: 2.4rem; }
-            .title-glow { font-size: 2.4rem; }
-            .tagline { font-size: 0.95rem; }
-            .app-logo { width: 120px; height: 120px; border-radius: 30px; }
-            .features-grid { gap: 14px; margin: 35px auto; }
-            .feature-card { padding: 24px 18px; border-radius: 20px; }
-            .download-section { padding: 60px 14px; }
-            .download-glass { padding: 40px 18px; border-radius: 24px; }
-            .download-title { font-size: 1.5rem; }
-            .download-subtitle { font-size: 0.9rem; }
-            .download-btn { padding: 15px 32px; font-size: 1rem; }
-            .bg-orb { filter: blur(60px); }
-            .orb1, .orb2 { width: 220px; height: 220px; }
-            .orb3, .orb4, .orb5 { width: 150px; height: 150px; }
+            .hero { padding: 20px 12px 70px; }
+            .app-title { font-size: 2.1rem; letter-spacing: 0.05em; }
+            .title-glow { font-size: 2.1rem; }
+            .tagline { font-size: 0.9rem; margin-bottom: 25px; }
+            .app-logo { width: 110px; height: 110px; border-radius: 28px; }
+            .logo-wrapper { margin-bottom: 30px; }
+            .features-grid { gap: 12px; margin: 35px auto; }
+            .feature-card { padding: 22px 16px; border-radius: 16px; }
+            .download-section { padding: 60px 10px; }
+            .download-glass { padding: 35px 15px; border-radius: 20px; }
+            .download-title { font-size: 1.4rem; }
+            .download-btn { padding: 14px 28px; font-size: 0.95rem; gap: 10px; }
+            .download-btn svg { width: 20px; height: 20px; }
+            .footer-text { font-size: 0.8rem; }
         }
-
-        html { scroll-behavior: smooth; }
+        
+        .smooth-transition {
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
+        }
     </style>
 </head>
 <body>
@@ -662,21 +641,20 @@
         <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
 
-    <div class="container">
+    <div class="main-container">
         <section class="hero">
-            <div class="logo-container">
-                <div class="logo-wrapper">
-                    <div class="logo-glow"></div>
-                    <img src="/yume.png" alt="YumeMusic" class="app-logo" id="appLogo">
-                </div>
+            <div class="logo-wrapper">
+                <div class="logo-glow"></div>
+                <img src="yume.png" alt="YumeMusic" class="app-logo" id="appLogo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display:none; width:160px; height:160px; border-radius:40px; background:linear-gradient(135deg, #1565c0, #0d47a1); align-items:center; justify-content:center; font-size:3rem; font-weight:800; color:white; box-shadow:0 20px 50px rgba(0,0,0,0.5);">YM</div>
             </div>
-            <div style="position: relative;">
+            <div class="title-container">
                 <span class="title-glow">YumeMusic</span>
                 <h1 class="app-title">YumeMusic</h1>
             </div>
             <p class="tagline">Your Music. Your Way. Zero Ads.</p>
 
-            <div class="features-grid">
+            <div class="features-grid" id="featuresGrid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
@@ -730,7 +708,7 @@
         </section>
 
         <section class="download-section" id="download">
-            <div class="download-glass">
+            <div class="download-glass" id="downloadGlass">
                 <h2 class="download-title">Ready to Experience Freedom?</h2>
                 <p class="download-subtitle">Download YumeMusic now and unlock a world of unlimited, ad-free music at your fingertips.</p>
                 <a href="/download-YumeMusic.apk" class="download-btn" id="downloadBtn">
@@ -750,160 +728,190 @@
     </div>
 
     <script>
-        const cursorGlow = document.getElementById('cursorGlow');
-        const bgOrbs = document.querySelectorAll('.bg-orb');
-        const featureCards = document.querySelectorAll('.feature-card');
+        (function() {
+            const cursorGlow = document.getElementById('cursorGlow');
+            const bgOrbs = document.querySelectorAll('.bg-orb');
+            const featureCards = document.querySelectorAll('.feature-card');
+            const downloadGlass = document.getElementById('downloadGlass');
+            const appLogo = document.getElementById('appLogo');
+            const skipArrow = document.getElementById('skipArrow');
+            const downloadSection = document.getElementById('download');
 
-        document.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let targetX = mouseX;
+            let targetY = mouseY;
 
-            bgOrbs.forEach((orb, index) => {
-                const speed = (index + 1) * 0.015;
-                const x = (window.innerWidth / 2 - e.clientX) * speed;
-                const y = (window.innerHeight / 2 - e.clientY) * speed;
-                orb.style.transform = `translate(${x}px, ${y}px)`;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                targetX = mouseX;
+                targetY = mouseY;
+                
+                cursorGlow.style.left = mouseX + 'px';
+                cursorGlow.style.top = mouseY + 'px';
+
+                featureCards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((mouseX - rect.left) / rect.width) * 100;
+                    const y = ((mouseY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mouse-x', x + '%');
+                    card.style.setProperty('--mouse-y', y + '%');
+                });
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 0) {
+                    mouseX = e.touches[0].clientX;
+                    mouseY = e.touches[0].clientY;
+                    targetX = mouseX;
+                    targetY = mouseY;
+                }
+            }, { passive: true });
+
+            function animateBackground() {
+                bgOrbs.forEach((orb, index) => {
+                    const speed = (index + 1) * 0.012;
+                    const offsetX = (window.innerWidth / 2 - targetX) * speed;
+                    const offsetY = (window.innerHeight / 2 - targetY) * speed;
+                    orb.style.transition = 'transform 0.3s ease-out';
+                    orb.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                });
+                requestAnimationFrame(animateBackground);
+            }
+            animateBackground();
+
+            const canvas = document.createElement('canvas');
+            canvas.style.display = 'none';
+            document.body.appendChild(canvas);
+
+            function createLiquidEffect(x, y) {
+                const blob = document.createElement('div');
+                blob.className = 'liquid-blob';
+                blob.style.left = (x - 50) + 'px';
+                blob.style.top = (y - 50) + 'px';
+                blob.style.width = '100px';
+                blob.style.height = '100px';
+                blob.style.animation = 'liquidSpread 1s ease-out forwards';
+                document.body.appendChild(blob);
+
+                const ring = document.createElement('div');
+                ring.className = 'ripple-ring';
+                ring.style.left = (x - 25) + 'px';
+                ring.style.top = (y - 25) + 'px';
+                ring.style.width = '50px';
+                ring.style.height = '50px';
+                ring.style.animation = 'rippleExpand 0.7s ease-out forwards';
+                document.body.appendChild(ring);
+
+                setTimeout(() => {
+                    blob.remove();
+                    ring.remove();
+                }, 1000);
+            }
+
+            document.addEventListener('click', (e) => {
+                createLiquidEffect(e.clientX, e.clientY);
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                for (let touch of e.touches) {
+                    createLiquidEffect(touch.clientX, touch.clientY);
+                }
+            }, { passive: true });
+
+            appLogo.addEventListener('mousemove', (e) => {
+                const rect = appLogo.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const tiltX = (e.clientY - centerY) / 10;
+                const tiltY = (centerX - e.clientX) / 10;
+                appLogo.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.03)`;
+            });
+
+            appLogo.addEventListener('mouseleave', () => {
+                appLogo.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
             });
 
             featureCards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                card.style.setProperty('--mouse-x', x + '%');
-                card.style.setProperty('--mouse-y', y + '%');
-            });
-        });
-
-        function createLiquidEffect(x, y) {
-            const blob = document.createElement('div');
-            blob.className = 'liquid-blob';
-            blob.style.left = (x - 75) + 'px';
-            blob.style.top = (y - 75) + 'px';
-            blob.style.width = '150px';
-            blob.style.height = '150px';
-            blob.style.animation = 'liquidSpread 1.2s ease-out forwards';
-            document.body.appendChild(blob);
-
-            const ring = document.createElement('div');
-            ring.className = 'ripple-ring';
-            ring.style.left = (x - 30) + 'px';
-            ring.style.top = (y - 30) + 'px';
-            ring.style.width = '60px';
-            ring.style.height = '60px';
-            ring.style.animation = 'rippleExpand 0.8s ease-out forwards';
-            document.body.appendChild(ring);
-
-            setTimeout(() => {
-                blob.remove();
-                ring.remove();
-            }, 1200);
-        }
-
-        document.addEventListener('click', (e) => {
-            createLiquidEffect(e.clientX, e.clientY);
-        });
-
-        document.addEventListener('touchstart', (e) => {
-            Array.from(e.touches).forEach(touch => {
-                createLiquidEffect(touch.clientX, touch.clientY);
-            });
-        }, { passive: true });
-
-        const appLogo = document.getElementById('appLogo');
-
-        appLogo.addEventListener('mousemove', (e) => {
-            const rect = appLogo.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const tiltX = (e.clientY - centerY) / 8;
-            const tiltY = (centerX - e.clientX) / 8;
-            appLogo.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
-        });
-
-        appLogo.addEventListener('mouseleave', () => {
-            appLogo.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-        });
-
-        featureCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`;
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+                    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    if (card.classList.contains('visible')) {
+                        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+                    } else {
+                        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(50px)';
+                    }
+                });
             });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -60px 0px'
-        };
+            featureCards.forEach(card => observer.observe(card));
+            observer.observe(downloadGlass);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+            if ('ontouchstart' in window) {
+                cursorGlow.style.display = 'none';
+            } else {
+                let targetCursorX = mouseX;
+                let targetCursorY = mouseY;
+                setInterval(() => {
+                    cursorGlow.style.left = targetCursorX + 'px';
+                    cursorGlow.style.top = targetCursorY + 'px';
+                }, 30);
+            }
+
+            let arrowHidden = false;
+
+            function hideArrowPermanently() {
+                if (!arrowHidden) {
+                    arrowHidden = true;
+                    skipArrow.classList.add('hidden');
                 }
+            }
+
+            skipArrow.addEventListener('click', (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                hideArrowPermanently();
+                downloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             });
-        }, observerOptions);
 
-        featureCards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(40px)';
-            card.style.transition = `all 0.7s cubic-bezier(0.23, 1, 0.32, 1) ${index * 0.12}s`;
-            observer.observe(card);
-        });
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > window.innerHeight * 0.4) {
+                    hideArrowPermanently();
+                }
+            }, { passive: true });
 
-        if ('ontouchstart' in window) {
-            cursorGlow.style.display = 'none';
-        }
-
-        const skipArrow = document.getElementById('skipArrow');
-        const downloadSection = document.getElementById('download');
-        let arrowHidden = false;
-
-        function hideArrowPermanently() {
-            if (!arrowHidden) {
-                arrowHidden = true;
-                skipArrow.classList.add('hidden');
-                setTimeout(() => {
-                    skipArrow.style.display = 'none';
-                }, 400);
+            async function fetchDownloadCount() {
+                try {
+                    const response = await fetch('/api/download-count');
+                    const data = await response.json();
+                    document.getElementById('downloadCount').textContent = data.count.toLocaleString();
+                } catch (e) {
+                    document.getElementById('downloadCount').textContent = '1,204';
+                }
             }
-        }
 
-        skipArrow.addEventListener('click', (e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            hideArrowPermanently();
-            downloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-
-        window.addEventListener('scroll', () => {
-            hideArrowPermanently();
-        }, { passive: true, once: true });
-
-        async function fetchDownloadCount() {
-            try {
-                const response = await fetch('/api/download-count');
-                const data = await response.json();
-                const countEl = document.getElementById('downloadCount');
-                countEl.textContent = data.count.toLocaleString();
-            } catch (e) {
-                document.getElementById('downloadCount').textContent = '60';
-            }
-        }
-
-        fetchDownloadCount();
-        setInterval(fetchDownloadCount, 30000);
+            fetchDownloadCount();
+            setInterval(fetchDownloadCount, 30000);
+        })();
     </script>
 </body>
 </html>
