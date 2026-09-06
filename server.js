@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -38,9 +37,7 @@ async function connectMongoDB() {
                 await downloadCollection.updateOne({ _id: 'counter' }, { $set: { count: base, base } });
             }
         }
-        console.log('MongoDB connected successfully');
     } catch (e) {
-        console.error('MongoDB connection error:', e.message);
     }
 }
 
@@ -103,16 +100,16 @@ app.get('/yume.png', (req, res) => {
     res.sendFile(path.join(__dirname, 'yume.png'));
 });
 
-app.get('/YumeMusic.apk', (req, res) => {
-    res.download(path.join(__dirname, 'YumeMusic.apk'), 'YumeMusic.apk');
-});
-
-app.get('/download-yume-music', async (req, res) => {
+app.get(['/YumeMusic.apk', '/download-yume-music'], async (req, res) => {
     const filePath = path.join(__dirname, 'YumeMusic.apk');
     if (fs.existsSync(filePath)) {
         await incrementDownloadCount();
-        res.setHeader('Content-Type', 'application/vnd.android.package-archive');
-        res.setHeader('Content-Disposition', 'attachment; filename="YumeMusic.apk"');
+        const stat = fs.statSync(filePath);
+        res.writeHead(200, {
+            'Content-Type': 'application/vnd.android.package-archive',
+            'Content-Disposition': 'attachment; filename="YumeMusic.apk"',
+            'Content-Length': stat.size
+        });
         const stream = fs.createReadStream(filePath);
         stream.pipe(res);
     } else {
@@ -189,8 +186,6 @@ function checkWinner(board) {
 }
 
 io.on('connection', (socket) => {
-    console.log('Player connected:', socket.id);
-
     socket.on('create-room', (data) => {
         const roomId = uuidv4().substring(0, 8);
         const roomCode = generateRoomCode();
@@ -470,7 +465,6 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        console.log('Player disconnected:', socket.id);
         if (socket.roomId) {
             const room = rooms.get(socket.roomId);
             if (room) {
@@ -499,10 +493,4 @@ setInterval(() => {
     }
 }, 600000);
 
-server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Portfolio: http://localhost:${PORT}/`);
-    console.log(`Code Formatting Pro: http://localhost:${PORT}/code-formating-pro`);
-    console.log(`Tic-Tac-Toe: http://localhost:${PORT}/tic-tac-toe`);
-    console.log(`Chat Bots: http://localhost:${PORT}/chat-bots`);
-});
+server.listen(PORT, '0.0.0.0');
