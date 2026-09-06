@@ -95,24 +95,24 @@ app.get('/chat-bots', (req, res) => {
     res.sendFile(path.join(__dirname, 'chat-bot', 'index.html'));
 });
 
-app.get('/yours-UwU', (req, res) => {
-    res.sendFile(path.join(__dirname, 'uwu.html'));
+app.get('/yume-music', (req, res) => {
+    res.sendFile(path.join(__dirname, 'yume.html'));
 });
 
-app.get('/uwu.png', (req, res) => {
-    res.sendFile(path.join(__dirname, 'uwu.png'));
+app.get('/yume.png', (req, res) => {
+    res.sendFile(path.join(__dirname, 'yume.png'));
 });
 
-app.get('/U⩊U.apk', (req, res) => {
-    res.download(path.join(__dirname, 'U⩊U.apk'), 'UwU.apk');
+app.get('/YumeMusic.apk', (req, res) => {
+    res.download(path.join(__dirname, 'YumeMusic.apk'), 'YumeMusic.apk');
 });
 
-app.get('/download-uwu-app', async (req, res) => {
-    const filePath = path.join(__dirname, 'U⩊U.apk');
+app.get('/download-yume-music', async (req, res) => {
+    const filePath = path.join(__dirname, 'YumeMusic.apk');
     if (fs.existsSync(filePath)) {
         await incrementDownloadCount();
         res.setHeader('Content-Type', 'application/vnd.android.package-archive');
-        res.setHeader('Content-Disposition', 'attachment; filename="UwU.apk"');
+        res.setHeader('Content-Disposition', 'attachment; filename="YumeMusic.apk"');
         const stream = fs.createReadStream(filePath);
         stream.pipe(res);
     } else {
